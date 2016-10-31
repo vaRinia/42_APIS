@@ -5,12 +5,16 @@ var columna = renglon.firstChild;
 
 function clickLista (){
 	inputLista.removeEventListener("click", clickLista);
+
+	//inputLista.setAttribute("onkeypress", "checkKey(event)")
+
+
 	var btnGuardarLista = document.createElement("button");
 	btnGuardarLista.setAttribute("class", "btn btn-success btn-sm");
 	btnGuardarLista.appendChild(document.createTextNode("Guardar Lista"));
 	this.parentElement.appendChild(btnGuardarLista);
 
-	btnGuardarLista.onclick = function () {
+	function guardarLista () {
 		if (inputLista.value == null || inputLista.value == 0) {
 			alert("Escribee un super título :)");
 			return false;
@@ -43,6 +47,9 @@ function clickLista (){
 		btnGuardarTarjeta.appendChild(document.createTextNode("Guardar Tarjeta"));
 		renglon.insertBefore(divCol, columna);
 
+		//inputTarjeta.setAttribute("onkeypress", "checkKey(event)")
+
+
 		tache2.onclick = function () {
 			this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
 		}
@@ -52,7 +59,7 @@ function clickLista (){
 		}
 			inputLista.value = "";
 	
-		btnGuardarTarjeta.onclick = function () {
+		function guardarTarjeta() {
 			if (inputTarjeta.value == null || inputTarjeta.value == 0) {
 				alert("¡¡¡Escribe una super tarea!!!");
 				return false;
@@ -88,13 +95,18 @@ function clickLista (){
 			
 			inputTarjeta.value = "";
 		};
+		btnGuardarTarjeta.addEventListener("click", guardarTarjeta);
 	}
+	btnGuardarLista.addEventListener("click", guardarLista);
 }; //fin de función clickLista
 inputLista.addEventListener("click",clickLista); //al hacer click en inputLista, llama a la funcion clickLista
+
+
 
 function allowDrop(ev) {
 	ev.preventDefault();
 	if (ev.target.id == "echamelo") {
+
 		createElement()
 	}
 };
@@ -108,3 +120,46 @@ function drop(ev) {
 function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 };
+
+ document.addEventListener("dragstart", function( event ) {
+      // store a ref. on the dragged elem
+      dragged = event.target;
+      // make it half transparent
+      event.target.style.opacity = .8;
+      event.target.style.backgroundColor = "orange";
+  }, false);
+ document.addEventListener("dragend", function( event ) {
+      // reset the transparency
+      event.target.style.opacity = "";
+      event.target.style.backgroundColor = "";
+  }, false);
+
+ document.addEventListener("dragenter", function( event ) {
+      // highlight potential drop target when the draggable element enters it
+      if ( event.target.id == "echamelo" ) {
+          event.target.style.background = "#000";
+          event.target.style.paddingTop = "10px";
+      }
+
+  }, false);
+
+  document.addEventListener("dragleave", function( event ) {
+      // reset background of potential drop target when the draggable element leaves it
+      if ( event.target.id == "echamelo" ) {
+          event.target.style.background = "";
+      }
+
+  }, false);
+
+
+
+
+/*function checkKey(key){
+    if (key.charCode == 13){
+    	alert("enter");
+    	guardarLista();
+    }
+    if (key.charCode == 27){
+    alert("esc");
+    }
+};*/
