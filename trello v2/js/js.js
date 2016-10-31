@@ -34,7 +34,7 @@ function clickLista (){
 		divCol.setAttribute("ondrop","drop(event)");
 		divCol.setAttribute("ondragover","allowDrop(event)");
 		
-		divCol.setAttribute("class","col-xs-12 col-sm-4 col-md-3 pd-2");
+		divCol.setAttribute("class","col-xs-12 col-sm-4 col-md-3 pd-2 jkl");
 		var divBox = document.createElement("div");
 		divBox.setAttribute("class", "box-tarjeta mg-t-15");
 		var inputTarjeta = document.createElement("textarea");
@@ -115,6 +115,8 @@ function drop(ev) {
 	var data = ev.dataTransfer.getData("text");
 	if (ev.target.id == "echamelo") {
 		ev.target.insertBefore(document.getElementById(data), ev.target.lastChild);	
+		 event.target.style.background = "";
+		 event.target.style.padding = "";
 	}
 };
 function drag(ev) {
@@ -138,7 +140,7 @@ function drag(ev) {
       // highlight potential drop target when the draggable element enters it
       if ( event.target.id == "echamelo" ) {
           event.target.style.background = "#000";
-          event.target.style.paddingTop = "10px";
+          event.target.style.padding = "10px";
       }
 
   }, false);
@@ -146,7 +148,8 @@ function drag(ev) {
   document.addEventListener("dragleave", function( event ) {
       // reset background of potential drop target when the draggable element leaves it
       if ( event.target.id == "echamelo" ) {
-          event.target.style.background = "";
+        event.target.style.background = "";
+        event.target.style.padding = "";
       }
 
   }, false);
