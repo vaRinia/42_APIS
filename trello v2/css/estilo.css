@@ -56,6 +56,10 @@ textarea, p {
 .pd-2 {
 	padding-bottom: 2%;
 }
+.pd-lr-1 {
+	padding-right: 1%;
+	padding-left: 1%;
+}
 .mg-t-15 {
 	margin-top: 15px;
 }
